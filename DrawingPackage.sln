@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DrawingPackage", "DrawingPackage\DrawingPackage.csproj", "{F72F9478-AA85-497A-9D3D-01ED6276F06B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrowingPackage.Test", "DrowingPackage.Test\DrowingPackage.Test.csproj", "{16CE3ED9-A997-4C4B-B710-85514D117634}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DrawingPackage.Test", "DrowingPackage.Test\DrawingPackage.Test.csproj", "{16CE3ED9-A997-4C4B-B710-85514D117634}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

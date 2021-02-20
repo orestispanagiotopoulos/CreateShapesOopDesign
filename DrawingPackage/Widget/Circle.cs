@@ -7,7 +7,7 @@ namespace DrawingPackage.Widget
         public int Diameter { get; private set; }
         public override string Name { get; protected set; }
 
-        private Circle(int x, int y, int diameter) : base(x, y)
+        private Circle(Location location, int diameter) : base(location)
         {
             Diameter = diameter;
             Name = typeof(Circle).Name;
@@ -18,13 +18,18 @@ namespace DrawingPackage.Widget
             return $"{base.GetLocation()} size={Diameter}";
         }
 
-        public static Circle Create(int x, int y, int diameter)
+        public override Shape Move(Location location)
+        {
+            return new Circle(location, Diameter);
+        }
+
+        public static Circle Create(Location location, int diameter)
         {
             if (diameter < 0)
             {
                 throw new ArgumentException("The parameters can not be negative");
             }
-            return new Circle(x, y, diameter);
+            return new Circle(location, diameter);
         }
     }
 }

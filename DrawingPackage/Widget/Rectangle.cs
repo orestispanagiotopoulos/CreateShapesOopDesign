@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DrawingPackage.Widget
 {
@@ -10,7 +8,7 @@ namespace DrawingPackage.Widget
         public int Height { get; private set; }
         public override string Name { get; protected set; }
 
-        private Rectangle(int x, int y, int width, int height) : base(x, y)
+        private Rectangle(Location location, int width, int height) : base(location)
         {
             Width = width;
             Height = height;
@@ -22,13 +20,18 @@ namespace DrawingPackage.Widget
             return $"{base.GetLocation()} width={Width} height={Height}";
         }
 
-        public static Rectangle Create(int x, int y, int width, int height)
+        public override Shape Move(Location location)
+        {
+            return new Rectangle(location, Width, Height);
+        }
+
+        public static Rectangle Create(Location location, int width, int height)
         {
             if(width<0 || height<0)
             {
                 throw new ArgumentException("The parameters can not be negative");
             }
-            return new Rectangle(x, y, width, height);
+            return new Rectangle(location, width, height);
         }
     }
 }

@@ -21,11 +21,11 @@ namespace DrawingPackage
 
         public IWidgetFactory CreateFactoryFor(WidgetType wType)
         {
-            var fctoryName = $"{wType.ToString()}Factory";
+            var factoryName = $"{wType.ToString()}Factory";
 
             Type factory = factories
                 .Single(x => x.Name.ToLowerInvariant()
-                .Contains(fctoryName.ToLowerInvariant()));
+                .Contains(factoryName.ToLowerInvariant()));
 
             IWidgetFactory instance =
                 (IWidgetFactory)Activator

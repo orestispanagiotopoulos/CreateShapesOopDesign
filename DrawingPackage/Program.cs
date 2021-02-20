@@ -11,9 +11,6 @@ namespace DrawingPackage
     {
         static void Main(string[] args)
         {
-            // var textDec = new TextDecorator(Rectangle.Create(5, 5, 200, 100), "sample text", WidgetType.Textbox.ToString());
-            // var colorDec = new ColorDecorator(new TextDecorator(Rectangle.Create(5, 5, 200, 100), "sample text"), "Red", "TextBoxColor");
-
             // Hard-coded set of widget parameters 
             var widgetParams = new List<WidgetParam>()
             {
@@ -24,12 +21,20 @@ namespace DrawingPackage
                 new WidgetParam() {WidgetType = WidgetType.Textbox, X = 5, Y = 5, Width = 200, Height = 100, Text = "sample text" },
             };
 
+            var widgets = CreateWidgets(widgetParams);
+
+            PrintWidgets(widgets);
+
+            Console.ReadKey();
+        }
+
+        private static List<Shape> CreateWidgets(List<WidgetParam> widgetParams)
+        {
             var widgets = new List<Shape>();
+            var factoryProvider = new WidgetProviderFactory();
 
             foreach (var wParam in widgetParams)
             {
-                var factoryProvider = new WidgetProviderFactory();
-
                 // Create appropriate factory for each widget
                 IWidgetFactory widgetFactory = factoryProvider.CreateFactoryFor(wParam.WidgetType);
 
@@ -39,20 +44,15 @@ namespace DrawingPackage
                 // Add to the list
                 widgets.Add(shape);
             }
+            return widgets;
+        }
 
+        private static void PrintWidgets(List<Shape> widgets)
+        {
             foreach (var widget in widgets)
             {
-                try
-                {
-                    Console.WriteLine($"{widget.Name} {widget.GetWidgetDescription()}");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
+                Console.WriteLine($"{widget.Name} {widget.GetWidgetDescription()}");
             }
-
-            Console.ReadKey();
         }
     }
 }

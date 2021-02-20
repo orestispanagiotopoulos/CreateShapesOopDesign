@@ -6,7 +6,7 @@ namespace DrawingPackage.Factory
     {
         public Shape CreateWidget(WidgetParam wParam)
         {
-            return Rectangle.Create(wParam.X.Value, wParam.Y.Value, wParam.Width.Value, wParam.Height.Value);
+            return Rectangle.Create(new Location(wParam.X.Value, wParam.Y.Value), wParam.Width.Value, wParam.Height.Value);
         }
     }
 }

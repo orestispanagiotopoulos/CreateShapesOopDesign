@@ -7,7 +7,7 @@ namespace DrawingPackage.Widget
         public int Side { get; private set; }
         public override string Name { get; protected set; }
 
-        private Square(int x, int y, int side) : base(x, y)
+        private Square(Location location, int side) : base(location)
         {
             Side = side;
             Name = typeof(Square).Name;
@@ -18,13 +18,18 @@ namespace DrawingPackage.Widget
             return $"{base.GetLocation()} size={Side}";
         }
 
-        public static Square Create(int x, int y, int side)
+        public override Shape Move(Location location)
+        {
+            return new Square(location, Side);
+        }
+
+        public static Square Create(Location location, int side)
         {
             if (side < 0)
             {
                 throw new ArgumentException("The parameters can not be negative");
             }
-            return new Square(x, y, side);
+            return new Square(location, side);
         }
     }
 }

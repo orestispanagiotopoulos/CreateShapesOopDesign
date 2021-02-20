@@ -6,7 +6,7 @@ namespace DrawingPackage.Factory
     {
         public Shape CreateWidget(WidgetParam wParam)
         {
-            return Circle.Create(wParam.X.Value, wParam.Y.Value, wParam.Diameter.Value);
+            return Circle.Create(new Location(wParam.X.Value, wParam.Y.Value), wParam.Diameter.Value);
         }
     }
 }

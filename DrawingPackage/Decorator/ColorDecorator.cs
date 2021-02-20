@@ -8,27 +8,21 @@ namespace DrawingPackage.Decorator
         public string Color { get; private set; }
         public override string Name { get; protected set; }
 
-        public ColorDecorator(Shape shape, string color) : base(shape.X, shape.Y)
+        public ColorDecorator(Shape shape, string color, string shapeName = null) : base(shape.Location)
         {
-            SetProperties(shape, color);
-            Name = Shape.Name;
+            Shape = shape;
+            Color = color;
+            Name = shapeName ?? Shape.Name;
         }
 
-        public ColorDecorator(Shape shape, string color, string shapeName) : base(shape.X, shape.Y)
+        public override Shape Move(Location location)
         {
-            SetProperties(shape, color);
-            Name = shapeName;
+            return new ColorDecorator(Shape.Move(location), Color, Name);
         }
 
         public override string GetWidgetDescription()
         {
             return $"{Shape.GetWidgetDescription()} Color=\"{Color}\"";
-        }
-
-        private void SetProperties(Shape shape, string text)
-        {
-            Shape = shape;
-            Color = text;
         }
     }
 }

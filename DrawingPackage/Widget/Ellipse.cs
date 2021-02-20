@@ -11,7 +11,7 @@ namespace DrawingPackage.Widget
 
         public override string Name { get; protected set; }
 
-        public Ellipse(int x, int y, int diameterH, int diameterV) : base(x, y)
+        public Ellipse(Location location, int diameterH, int diameterV) : base(location)
         {
             DiameterH = diameterH;
             DiameterV = diameterV;
@@ -23,13 +23,18 @@ namespace DrawingPackage.Widget
             return $"{base.GetLocation()} diameterH = {DiameterH} diameterV = {DiameterV}";
         }
 
-        public static Ellipse Create(int x, int y, int diameterH, int diameterV)
+        public override Shape Move(Location location)
+        {
+            return new Ellipse(location, DiameterH, DiameterV);
+        }
+
+        public static Ellipse Create(Location location, int diameterH, int diameterV)
         {
             if (diameterH < 0 || diameterV < 0)
             {
                 throw new ArgumentException("The parameters can not be negative");
             }
-            return new Ellipse(x, y, diameterH, diameterV);
+            return new Ellipse(location, diameterH, diameterV);
         }
     }
 }

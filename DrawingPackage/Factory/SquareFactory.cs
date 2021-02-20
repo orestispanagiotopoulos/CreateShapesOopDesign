@@ -6,7 +6,7 @@ namespace DrawingPackage.Factory
     {
         public Shape CreateWidget(WidgetParam wParam)
         {
-            return Square.Create(wParam.X.Value, wParam.Y.Value, wParam.Side.Value);
+            return Square.Create(new Location(wParam.X.Value, wParam.Y.Value), wParam.Side.Value);
         }
     }
 }
